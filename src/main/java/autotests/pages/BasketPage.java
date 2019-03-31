@@ -32,8 +32,8 @@ public class BasketPage extends BasePage {
 
 
     public void compareNameListInBasket() {
-//        assertEquals("Внесены не все товары в корзину", MyOzonPage.getNameOfProducts().size()
-//                , nameListInBasket.size());
+        assertEquals("Внесены не все товары в корзину", MyOzonPage.getNameOfProducts().size()
+                , nameListInBasket.size());
         for (int i = 0; i < nameListInBasket.size(); i++) {
             WebElement element = nameListInBasket.get(i)
                     .findElement(By.xpath(".//a[@data-test-id='cart-item-title']"));
