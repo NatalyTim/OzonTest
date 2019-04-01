@@ -11,6 +11,7 @@ public class BasketStep {
     public void compareProducts()throws Exception{
         basketPage.compareNameListInBasket();
         System.out.println("Сравниваем внесенные товары");
+        System.out.println("Все товары внесены");
     }
     @When("Удаляем содержимое корзины")
     public void clickDelete()throws Exception{
@@ -26,6 +27,7 @@ public class BasketStep {
     public void checkEmptyBasket(String expect)throws Exception{
         System.out.println("Проверяем корзину");
         basketPage.checkEmptyBasket(expect);
+
 
     }
 

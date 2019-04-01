@@ -32,6 +32,7 @@ public class MyOzonPage extends BasePage {
     @FindBy(xpath = "//div[@data-test-id='header-cart']")
     private WebElement basket;
 
+
     public void waitUntilLoginPageClose() {
         wait.until(ExpectedConditions.invisibilityOf(windowLogin));
     }
@@ -65,12 +66,11 @@ public class MyOzonPage extends BasePage {
 
         for (int i = 0; i < quantityOfProduct; i++) {
             WebElement button = listOfProduct.get(i).findElement(By.xpath(".//button[@data-test-id='tile-buy-button']/.."));
+            WebElement name = listOfProduct.get(i).findElement(By.xpath(".//a[@class='full-cover-link']"));
+            System.out.println(name.getAttribute("href"));
+            nameOfProducts.add(name.getAttribute("href").trim());
             scrollToAndClickElement(button);
-            WebElement name = listOfProduct.get(i).findElement(By.xpath(".//div[@data-test-id='tile-name']"));
-            nameOfProducts.add(name.getText().trim());
-            System.out.println(name.getText().trim());
         }
-
     }
 
     public void clickBasket() throws Exception {

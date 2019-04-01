@@ -1,21 +1,15 @@
 package autotests.pages;
 
-import autotests.util.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BasketPage extends BasePage {
 
-    //@FindBy(xpath = "//div[@class='split simple m-first m-last']/child::*")
-    @FindBy(xpath = "//div[contains(text(), 'Ozon.ru')]/following-sibling::*")
+     @FindBy(xpath = "//div[contains(text(), 'Ozon.ru')]/following-sibling::*")
     private List<WebElement> nameListInBasket;
 
     @FindBy(xpath = "//button[@data-test-id='cart-delete-selected-btn']")
@@ -37,12 +31,12 @@ public class BasketPage extends BasePage {
         for (int i = 0; i < nameListInBasket.size(); i++) {
             WebElement element = nameListInBasket.get(i)
                     .findElement(By.xpath(".//a[@data-test-id='cart-item-title']"));
-            String productName = element.getText().trim().split(",")[0].trim();
+            WebElement product = nameListInBasket.get(i).findElement(By.xpath(".//a[@class='box m-box-img']"));
+            System.out.println(product.getAttribute("href"));
+            String productName = product.getAttribute("href").trim();
             String errorText = " Данный товар отсутствует в корзине: " + productName;
-//            assertTrue(errorText, MyOzonPage.getNameOfProducts().contains(productName));
-            if(!MyOzonPage.getNameOfProducts().contains(productName)){
-                System.out.println(errorText);
-            }
+              assertTrue(errorText, MyOzonPage.getNameOfProducts().contains(productName));
+
         }
     }
 
